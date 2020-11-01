@@ -1,0 +1,845 @@
+[data-show="1"] {
+    display: block;
+}
+
+[data-show="0"] {
+    display: none !important;
+}
+
+@font-face {
+    font-family: "Gotham Pro Bold";
+    src: url("../fonts/GothamPro-Bold.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gotham Pro Medium";
+    src: url("../fonts/GothamPro-Medium.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@mixin title-size {
+    font-size: 90px;
+    color: #ffffff;
+
+    @media only screen and (max-width: 1440px) {
+        font-size: 60px;
+    }
+
+    @media only screen and (max-width: 1199px) {
+        font-size: 46px;
+    }
+
+    @media only screen and (max-width: 992px) {
+        font-size: 38px;
+    }
+
+    @media only screen and (max-width: 577px) {
+        font-size: 32px;
+    }
+}
+
+@mixin text-size {
+    border-radius: 33px;
+    background-color: #d7d9ff;
+    box-shadow: 0px 0px 36.1px 1.9px rgba(101, 108, 207, 0.18);
+
+    @media only screen and (max-width: 1440px) {
+        font-size: 18px;
+    }
+
+    @media only screen and (max-width: 577px) {
+        font-size: 16px;
+    }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    font-family: "Gotham Pro Medium";
+    font-size: 20px;
+}
+
+$c-accent: #303579;
+
+.container {
+    max-width: 1810px;
+    margin: 0 auto;
+    padding: 0 40px;
+
+    @media only screen and (max-width: 991px) {
+        padding: 0 15px;
+    }
+}
+
+a {
+    color: $c-accent;
+    text-decoration: none;
+}
+
+// style for header begin --------------------------
+
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+
+    &[data-color="standart"] {
+        .header__link {
+            color: $c-accent;
+
+            &:hover {
+                color: #ffffff;
+            }
+        }
+    }
+
+    &[data-color="white"] {
+        .header__link {
+            color: #ffffff;
+
+            &:hover {
+                color: $c-accent;
+            }
+        }
+    }
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 31px 0;
+
+        @media only screen and (max-width: 991px) {
+            padding: 15px 0;
+        }
+    }
+
+    &__logo {
+        margin-right: 200px;
+        @media only screen and (max-width: 991px) {
+            margin: 0;
+        }
+    }
+
+    &__logo-img {
+        width: 115px;
+        height: 58px;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        @media only screen and (max-width: 991px) {
+            width: 77px;
+            height: 39px;
+        }
+    }
+
+    &__logo-link {
+        height: 100%;
+    }
+
+    &__links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 1120px;
+        max-width: 1120px;
+
+        @media only screen and (max-width: 991px) {
+            display: none;
+        }
+    }
+
+    &__link {
+        font-family: "Gotham Pro Medium";
+        font-size: 20px;
+        transition: all 0.3s ease;
+    }
+
+    &__mobile {
+        width: 40px;
+        height: 30px;
+        position: relative;
+        display: none;
+        cursor: pointer;
+        z-index: 4;
+
+        &:after,
+        &:before {
+            content: "";
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background-color: #303579;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            z-index: 4;
+        }
+
+        &:after {
+            top: 0;
+            right: 0;
+        }
+
+        &:before {
+            bottom: 0;
+            right: 0;
+        }
+        @media only screen and (max-width: 991px) {
+            display: block;
+        }
+    }
+
+    &__mobile-menu {
+        position: absolute;
+        display: inline-block;
+        height: 3px;
+        border-radius: 4px;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #303579;
+        transition: all 0.3s ease;
+    }
+
+    &__mobile.active {
+        .header__mobile-menu {
+            width: 95%;
+            z-index: 4;
+            background-color: #ffffff;
+        }
+
+        &:after,
+        &:before {
+            background-color: #ffffff;
+        }
+
+        &:after {
+            width: 50%;
+            transform: rotate(45deg);
+            right: 0;
+            top: 6px;
+        }
+
+        &:before {
+            width: 50%;
+            transform: rotate(-45deg);
+            right: 0;
+            bottom: 6px;
+        }
+    }
+}
+
+// style for header end --------------------------
+
+// style for firs-screen begin --------------------------
+.hero {
+    &__scroll {
+        position: absolute;
+        bottom: -105px;
+        animation-duration: 1.5s;
+        animation-name: scroll-move;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+
+        &:after {
+            content: "";
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            width: 3px;
+            height: 41px;
+            background-color: #ffffff;
+            animation-duration: 1.5s;
+            animation-name: scroll-line;
+            animation-iteration-count: infinite;
+        }
+
+        @media only screen and (max-width: 1199px) {
+            display: none;
+        }
+    }
+}
+
+.scroll {
+    width: 43px;
+    height: 63px;
+    fill: #ffffff;
+    cursor: pointer;
+    transition: all 0.3 ease;
+
+    &:hover {
+        fill: #303579;
+    }
+}
+
+@keyframes scroll-line {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 41px;
+    }
+}
+
+@keyframes scroll-move {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: top center;
+
+    @media only screen and (max-width: 767px) {
+        height: 100%;
+    }
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media only screen and (max-width: 1199px) {
+            padding-top: 100px;
+            // padding-bottom: 180px;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: start;
+        }
+
+        @media only screen and (max-width: 992px) {
+            padding: 150px 0 130px 0;
+        }
+
+        @media only screen and (max-width: 577px) {
+            padding: 80px 0;
+        }
+    }
+
+    &__arcticle {
+        padding: 0 40px 0 58px;
+        position: relative;
+        @media only screen and (max-width: 1199px) {
+            padding: 0;
+            margin-bottom: 60px;
+        }
+
+        @media only screen and (max-width: 992px) {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__title {
+        font-size: 110px;
+        line-height: 120px;
+        color: #ffffff;
+        font-family: "Gotham Pro Bold";
+
+        @media only screen and (max-width: 1440px) {
+            font-size: 80px;
+            line-height: 90px;
+        }
+
+        @media only screen and (max-width: 1199px) {
+            font-size: 60px;
+            line-height: 70px;
+        }
+        @media only screen and (max-width: 992px) {
+            font-size: 50px;
+            line-height: 60px;
+        }
+
+        @media only screen and (max-width: 577px) {
+            font-size: 42px;
+            line-height: 52px;
+        }
+    }
+
+    &__sub-title {
+        font-size: 35.5px;
+        color: #ffffff;
+
+        @media only screen and (max-width: 1440px) {
+            font-size: 28px;
+        }
+
+        @media only screen and (max-width: 577px) {
+            font-size: 26px;
+            max-width: 400px;
+        }
+    }
+    &__text {
+        max-width: 971px;
+        padding: 40px 60px 40px 40px;
+        color: #1f2357;
+        @include text-size;
+
+        @media only screen and (max-width: 1440px) {
+            padding: 30px 50px 30px 30px;
+        }
+
+        @media only screen and (max-width: 1199px) {
+            max-width: 100%;
+        }
+
+        @media only screen and (max-width: 767px) {
+            padding: 25px 20px;
+        }
+    }
+
+    &__text-item {
+        display: block;
+    }
+
+    &__text-item:first-child {
+        margin-bottom: 32px;
+        @media only screen and (max-width: 577px) {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.hero__highlite {
+    font-size: 110px;
+    color: #303579;
+    @media only screen and (max-width: 1440px) {
+        font-size: 80px;
+    }
+
+    @media only screen and (max-width: 1199px) {
+        font-size: 60px;
+        line-height: 70px;
+    }
+
+    @media only screen and (max-width: 992px) {
+        font-size: 50px;
+        line-height: 60px;
+    }
+
+    @media only screen and (max-width: 577px) {
+        font-size: 40px;
+        line-height: 52px;
+    }
+}
+
+// style for firs-screen end --------------------------
+
+// style for two-screen begin --------------------------
+
+.two-screen {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: top center;
+
+    &__title-highlite {
+        @include title-size;
+        color: #34397d;
+
+        @media only screen and (max-width: 992px) {
+            margin-bottom: 30px;
+        }
+
+        @media only screen and (max-width: 577px) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__inner {
+        text-align: center;
+    }
+
+    &__title {
+        font-family: "Gotham Pro Bold";
+        line-height: 100%;
+        margin-bottom: 40px;
+
+        @include title-size;
+
+        @media only screen and (max-width: 992px) {
+            margin-bottom: 30px;
+        }
+
+        @media only screen and (max-width: 577px) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__sub-title {
+        margin-bottom: 40px;
+        font-size: 35px;
+        line-height: 100%;
+        color: #303579;
+
+        @media only screen and (max-width: 992px) {
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+    }
+
+    &__text {
+        max-width: 995px;
+        padding: 40px;
+        color: #303579;
+        @include text-size;
+
+        @media only screen and (max-width: 1440px) {
+            padding: 30px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            padding: 25px 20px;
+        }
+    }
+
+    &__text-item {
+        display: block;
+    }
+
+    &__text-item:first-child {
+        margin-bottom: 46px;
+
+        @media only screen and (max-width: 576px) {
+            margin-bottom: 26px;
+        }
+    }
+}
+
+// style for two-screen end--------------------------
+
+// style for last-screen begin --------------------------
+
+.last-screen {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+
+    @media only screen and (max-width: 992px) {
+        height: 100%;
+        padding: 150px 0 180px 0;
+    }
+
+    @media only screen and (max-width: 576px) {
+        padding-top: 100px;
+    }
+
+    &__title {
+        font-family: "Gotham Pro Bold";
+        text-align: center;
+        line-height: 100%;
+        margin-bottom: 58px;
+        @include title-size;
+
+        @media only screen and (max-width: 1440px) {
+            margin-bottom: 30px !important;
+         }
+
+        // @media only screen and (max-width: 1199px) {
+        //     margin-bottom: 38px;
+        // }
+    }
+
+    &__title-highlite {
+        @include title-size;
+        color: #34397d;
+    }
+
+    &__content {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+
+        @media only screen and (max-width: 1199px) {
+            flex-direction: column;
+        }
+    }
+
+    &__tags {
+        max-width: 625px;
+        margin-right: 40px;
+        display: flex;
+        flex-wrap: wrap;
+
+        @media only screen and (max-width: 1199px) {
+            max-width: 971px;
+            margin: 0 auto 20px auto;
+        }
+    }
+
+    &__tags-item {
+        padding: 13px 16px;
+        background-color: #8ea8fc;
+        border-radius: 13.5px;
+        font-size: 20px;
+        color: #34397d;
+        box-shadow: 0px 0px 15px rgba(54, 67, 112, 0.17);
+        margin: 0 30px 30px 0;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #34397d;
+            color: #8ea8fc;
+            box-shadow: 0px 1px 15px rgba(54, 67, 112, 0.5);
+        }
+
+        &:nth-child(3) {
+            margin-right: 0;
+
+            @media only screen and (max-width: 1199px) {
+                margin-right: 30px;
+            }
+            @media only screen and (max-width: 576px) {
+                margin-right: 12px;
+            }
+        }
+
+        @media only screen and (max-width: 1199px) {
+            margin: 0 20px 20px 0;
+            font-size: 18px;
+        }
+
+        @media only screen and (max-width: 1199px) {
+            font-size: 16px;
+        }
+
+        @media only screen and (max-width: 576px) {
+            padding: 12px 12px;
+            margin: 0 14px 14px 0;
+            font-size: 13px;
+        }
+    }
+
+    &__text {
+        max-width: 971px;
+        padding: 38px;
+        color: #303579;
+        @include text-size;
+
+        @media only screen and (max-width: 1199px) {
+            padding: 28px;
+            margin: 0 auto;
+        }
+        @media only screen and (max-width: 767px) {
+            padding: 25px 20px;
+        }
+    }
+
+    &__text-item {
+        line-height: 140%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        &:first-child {
+            margin-bottom: 48px;
+            @media only screen and (max-width: 1440px) {
+               margin-bottom: 18px !important;
+            }
+        }
+
+        &:last-child {
+            margin-top: 36px;
+
+            @media only screen and (max-width: 1440px) {
+                margin-top: 18px !important;
+             }
+        }
+
+        @media only screen and (max-width: 1440px) {
+            &:first-child {
+                margin-bottom: 38px;
+            }
+
+            &:last-child {
+                margin-top: 30px;
+            }
+        }
+
+        @media only screen and (max-width: 992px) {
+            &:first-child {
+                margin-bottom: 22px;
+            }
+
+            &:last-child {
+                margin-top: 22px;
+            }
+        }
+    }
+
+    &__text-item-highlite {
+        display: inline-block;
+        font-family: "Gotham Pro Bold";
+        font-size: 31px;
+        color: #86a2fc;
+        padding-right: 8px;
+        display: block;
+        text-align: center;
+        width: 34px;
+        margin-right: 10px;    
+    }
+}
+
+// style for last-screen end --------------------------
+
+// style for mobile-menu begin --------------------------
+
+.mobile-menu {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    overflow-y: scroll;
+    z-index: 2;
+    transition: all 0.3s ease;
+    transform: translateX(-100%);
+    opacity: 0;
+
+    &__inner {
+        text-align: center;
+    }
+    &__links{
+        span{
+            display: block;
+        }
+    }
+    &__link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #ffffff;
+
+        &:hover {
+            color: #303579;
+        }
+    }
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+    opacity: 1;
+    overflow: hidden;
+}
+
+body.active {
+    overflow: hidden;
+}
+
+// style for mobile-menu end --------------------------
+
+// style for icon begin --------------------------
+.icon {
+    width: 27px;
+    height: 27px;
+    margin-right: 24px;
+    fill: #ffffff;
+    transition: all 0.3s ease;
+
+    @media only screen and (max-width: 576px) {
+        margin-right: 15px;
+        width: 22px;
+        height: 22px;
+    }
+
+    &:hover {
+        fill: #303579;
+    }
+}
+
+// style for icon end --------------------------
+
+// style for footer begin --------------------------
+
+.footer__social-item {
+    display: inline-block;
+    margin-right: 0;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 28px 0;
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media only screen and (max-width: 1199px) {
+            flex-direction: column;
+        }
+    }
+    &__policy {
+        display: flex;
+        font-family: "Gotham Pro Medium";
+        @media only screen and (max-width: 1199px) {
+            order: 2;
+        }
+    }
+    &__policy-text {
+        font-size: 17px;
+        margin-right: 5px;
+        color: #ffffff;
+        @media only screen and (max-width: 576px) {
+            font-size: 14px;
+        }
+    }
+
+    &__policy-link {
+        font-size: 17px;
+        color: #ffffff;
+        border-bottom: 1px solid #ffffff;
+        transition: all 0.3s ease;
+        font-family: "Gotham Pro Medium";
+
+        @media only screen and (max-width: 576px) {
+            font-size: 14px;
+        }
+
+        &:hover {
+            color: #303579;
+            border-color: #303579;
+        }
+    }
+    &__social {
+        @media only screen and (max-width: 1199px) {
+            order: 1;
+            margin-bottom: 20px;
+        }
+    }
+    &__social-item {
+    }
+}
+
+// style for footer end --------------------------
+
